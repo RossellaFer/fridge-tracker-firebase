@@ -6,7 +6,7 @@ const firebaseConfig = {
   authDomain: "fridge-tracker-a606a.firebaseapp.com",
   projectId: "fridge-tracker-a606a",
   storageBucket: "fridge-tracker-a606a.appspot.com",
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
   measurementId: "G-H0R482WSSC"
 };
