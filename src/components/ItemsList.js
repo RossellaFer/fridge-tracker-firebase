@@ -1,36 +1,23 @@
 import { useEffect, useState } from "react";
 import Table  from "react-bootstrap/Table";
 import ItemDataService from "../services/item-services";
+import Item from './Item';
 
-const ItemsList = () => {
+const ItemsList = (props) => {
     return (
-        <Table striped bordered hover size="sm">
+        <Table striped bordered hover>
         <thead>
             <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Username</th>
+            <th>Item name</th>
+            <th>Expiry date</th>
+            <th>Opened</th>
+            <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            </tr>
-            <tr>
-            <td>2</td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            </tr>
-            <tr>
-            <td>3</td>
-            <td colSpan={2}>Larry the Bird</td>
-            <td>@twitter</td>
-            </tr>
+            {props.items.map(item => 
+                <Item key={item.id} item={item} handleShow={props.handleShow}/>
+            )}
         </tbody>
         </Table>
     )
