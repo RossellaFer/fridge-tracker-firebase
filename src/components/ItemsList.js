@@ -16,7 +16,7 @@ const ItemsList = (props) => {
         </thead>
         <tbody>
             {props.items.map(item => 
-                <Item key={item.id} item={item} handleShow={props.handleShow}/>
+                <Item key={item.id} item={item} handleShow={props.handleShow} deleteHandler={props.deleteHandler} getItemId={props.getItemId}/>
             )}
         </tbody>
         </Table>
