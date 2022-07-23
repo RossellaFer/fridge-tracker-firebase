@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { Form, Alert, Modal, Button } from "react-bootstrap";
 import { Timestamp } from "firebase/firestore";
 import ItemDataService from '../services/item-services';
-import { propTypes } from 'react-bootstrap/esm/Image';
 
 const ItemForm = ({handleClose, show, itemId, setItemId}) => {
     const [name, setName] = useState("");
@@ -68,6 +67,7 @@ const ItemForm = ({handleClose, show, itemId, setItemId}) => {
         setName("");
         setExpiryDate(Timestamp.fromDate(new Date()).toDate().toLocaleDateString('sv'));
         setChecked(false);
+        setMessage({error: false, msg: ""})
     }
 
     //run useEffect every time the value of the ID changes
@@ -80,7 +80,7 @@ const ItemForm = ({handleClose, show, itemId, setItemId}) => {
     return(
       <Modal show={show} onHide={handleModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>New Item</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             { message?.msg && (<Alert variant={ message?.error ? 'danger' : 'success'} dismissible onClose={() => setMessage("")} >{ message?.msg }</Alert>)}

@@ -2,7 +2,6 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import ItemDataService from './services/item-services';
 import ItemsList from './components/ItemsList';
-import staticItems from "./components/items";
 import Button from "react-bootstrap/Button";
 import AddItemButton from './components/AddItemButton';
 import ItemForm from './components/ItemForm';
@@ -40,7 +39,7 @@ function App() {
     <div className="App">
       <div className="my-5">
         <h1>Fridge tracker</h1>
-        <h4>Adding your favorite cat to the list</h4>
+        <h4>Add items currently in your fridge to the list to make sure you don't throw them away</h4>
       </div>
       <AddItemButton handleShow={handleShow} />
       <div className="mb-2 justify-content-start">
