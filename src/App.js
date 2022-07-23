@@ -56,10 +56,11 @@ function App() {
       <div className="App">
         <div className="my-5">
           <h1>Fridge tracker</h1>
+          <hr />
           <h4>Add items currently in your fridge to the list to make sure you don't throw them away</h4>
         </div>
 
-        <div className="mb-2 justify-content-start">
+        <div  className="actionButtons">
           <Button variant="dark edit" onClick={getItems}>
             Refresh List
           </Button>

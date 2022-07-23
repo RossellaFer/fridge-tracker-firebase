@@ -1,5 +1,5 @@
 import ActionButtons from "./ActionButtons";
-import Accordion  from "react-bootstrap/Accordion";
+import Accordion from "react-bootstrap/Accordion";
 import { Timestamp } from "firebase/firestore";
 import { LockIcon } from "../lock-outline";
 import { ClosedLockIcon } from "../lock-open-variant-outline";
@@ -17,9 +17,9 @@ const Item = (props) => {
         <Accordion.Item eventKey={index}>
             <Accordion.Header>{props.item.name}</Accordion.Header>
             <Accordion.Body>
-                <p>{formatted_expiry_date}</p>
-                <p>{props.item.opened ? <ClosedLockIcon accessibleTitle={`item-${props.item.id}-open`} /> : <LockIcon accessibleTitle={`item-${props.item.id}-closed`}/>}</p>
-                <ActionButtons handleShow={props.handleShow} deleteHandler={props.deleteHandler} itemId={props.item.id} getItemId={props.getItemId}/>
+                <p><strong>Expiry date:</strong> {formatted_expiry_date}</p>
+                <p><strong>Status:</strong> {props.item.opened ? 'Closed' : 'Open'} {props.item.opened ? <ClosedLockIcon accessibleTitle={`item-${props.item.id}-open`} /> : <LockIcon accessibleTitle={`item-${props.item.id}-closed`} />}</p>
+                <ActionButtons handleShow={props.handleShow} deleteHandler={props.deleteHandler} itemId={props.item.id} getItemId={props.getItemId} />
             </Accordion.Body>
         </Accordion.Item>
     )

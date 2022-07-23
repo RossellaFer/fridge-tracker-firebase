@@ -4,7 +4,7 @@ const SortingComponent = (props) => {
 
   return (
     <Dropdown onSelect={props.handleSelect}>
-      <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+      <Dropdown.Toggle className="sortingButton" id="dropdown-basic">
         Sort items
       </Dropdown.Toggle>
 
