@@ -47,21 +47,6 @@ const ItemForm = ({handleClose, show, itemId, setItemId}) => {
         setExpiryDate(Timestamp.fromDate(new Date()))
     }
 
-    const editHandler = async () =>  {
-        setMessage("");
-
-        try {
-            const entry = await ItemDataService.getItem(itemId);
-            const formatted_expiry_date = new Timestamp(entry.data().expiry_date.seconds, entry.data().expiry_date.nanoseconds).toDate().toLocaleDateString('sv')
-            setName(entry.data().name);
-            setExpiryDate(formatted_expiry_date);
-            setChecked(entry.data().opened)
-        }
-        catch(err) {
-            setMessage({error: true, msg: err.message})
-        }
-    }
-
     const handleModalClose = () => {
         handleClose();
         setName("");
@@ -73,6 +58,21 @@ const ItemForm = ({handleClose, show, itemId, setItemId}) => {
     //run useEffect every time the value of the ID changes
     useEffect(() => {
         if (itemId !== undefined && itemId !== "") {
+            const editHandler = async () =>  {
+                setMessage("");
+        
+                try {
+                    const entry = await ItemDataService.getItem(itemId);
+                    const formatted_expiry_date = new Timestamp(entry.data().expiry_date.seconds, entry.data().expiry_date.nanoseconds).toDate().toLocaleDateString('sv')
+                    setName(entry.data().name);
+                    setExpiryDate(formatted_expiry_date);
+                    setChecked(entry.data().opened)
+                }
+                catch(err) {
+                    setMessage({error: true, msg: err.message})
+                }
+            }
+
             editHandler();
         }
     }, [itemId])

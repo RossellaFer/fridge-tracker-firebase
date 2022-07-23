@@ -1,6 +1,7 @@
 export const ClosedLockIcon = ({ accessibleTitle }) => (
     <svg
       aria-labelledby={accessibleTitle}
+      className="statusIcon"
       role="img"
       style={{
         width: "24px",
