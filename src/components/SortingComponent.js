@@ -1,7 +1,6 @@
 import Dropdown from "react-bootstrap/Dropdown";
 
 const SortingComponent = (props) => {
-
   return (
     <Dropdown onSelect={props.handleSelect}>
       <Dropdown.Toggle className="sortingButton" id="dropdown-basic">
@@ -13,7 +12,7 @@ const SortingComponent = (props) => {
         <Dropdown.Item eventKey="expiry_date">Expiry date</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
-  )
-}
+  );
+};
 
 export default SortingComponent;

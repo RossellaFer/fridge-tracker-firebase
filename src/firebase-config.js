@@ -8,7 +8,7 @@ const firebaseConfig = {
   storageBucket: "fridge-tracker-a606a.appspot.com",
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: "G-H0R482WSSC"
+  measurementId: "G-H0R482WSSC",
 };
 
 // Initialize Firebase
