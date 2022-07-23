@@ -5,21 +5,30 @@ import ItemsList from './components/ItemsList';
 import Button from "react-bootstrap/Button";
 import AddItemButton from './components/AddItemButton';
 import ItemForm from './components/ItemForm';
+import SortingComponent from './components/SortingComponent';
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
+import { db } from './firebase-config';
 
 function App() {
-  const [ items, setItems ] = useState([]);
+  const [items, setItems ] = useState([]);
   const [show, setShow] = useState(false);
   const [itemId, setItemId] = useState("");
-  
+  const [sortingValue, setSortingValue] = useState('expiry_date');
+
   const handleClose = () => {
     setItemId('');
     setShow(false);
   }
+
+  const handleSelect = (e) => {
+    setSortingValue(e);
+  }
+
   const handleShow = () => setShow(true);
   
   useEffect(() => {
-    getItems();
-  }, []);
+    getSortedItems(sortingValue);
+  }, [sortingValue]);
 
   const getItemIdHandler = (id) => {
     setItemId(id);
@@ -28,6 +37,12 @@ function App() {
   const getItems = async() => {
     const data = await ItemDataService.getAllItems();
     setItems(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
+  }
+
+  const getSortedItems = (sortingValue) => {
+    onSnapshot(query(collection(db, "items"), orderBy(sortingValue)), (snapshot) => {
+      setItems(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
+    });
   }
 
   const deleteHandler = async (id) => {
@@ -46,6 +61,7 @@ function App() {
         <Button variant="dark edit" onClick={getItems}>
           Refresh List
         </Button>
+        <SortingComponent handleSelect={handleSelect}/>
       </div>
       <ItemsList items={items} handleShow={handleShow} deleteHandler={deleteHandler} getItemId={getItemIdHandler}/>
       <ItemForm handleClose={handleClose} show={show} itemId={itemId} setItemId={setItemId}/>

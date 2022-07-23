@@ -22,7 +22,7 @@ const ItemForm = ({handleClose, show, itemId, setItemId}) => {
         }
 
         const newItem = {
-            name: name,
+            name: name.charAt(0).toUpperCase() + name.slice(1),
             expiry_date: Timestamp.fromDate(new Date(expiry_date)),
             opened: checked 
         }
