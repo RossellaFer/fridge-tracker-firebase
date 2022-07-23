@@ -32,7 +32,22 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+}
+
+.addItem {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5em;
+  margin-right: 0.5em;
+  position: sticky;
+  bottom: 0;
 }

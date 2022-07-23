@@ -4,6 +4,7 @@ import ItemDataService from './services/item-services';
 import ItemsList from './components/ItemsList';
 import Button from "react-bootstrap/Button";
 import AddItemButton from './components/AddItemButton';
+import { Container } from 'react-bootstrap';
 import ItemForm from './components/ItemForm';
 import SortingComponent from './components/SortingComponent';
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
@@ -25,7 +26,7 @@ function App() {
   }
 
   const handleShow = () => setShow(true);
-  
+
   useEffect(() => {
     getSortedItems(sortingValue);
   }, [sortingValue]);
@@ -34,9 +35,9 @@ function App() {
     setItemId(id);
   }
 
-  const getItems = async() => {
+  const getItems = async () => {
     const data = await ItemDataService.getAllItems();
-    setItems(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
+    setItems(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
   }
 
   const getSortedItems = (sortingValue) => {
@@ -51,21 +52,28 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <div className="my-5">
-        <h1>Fridge tracker</h1>
-        <h4>Add items currently in your fridge to the list to make sure you don't throw them away</h4>
+    <Container>
+      <div className="App">
+        <div className="my-5">
+          <h1>Fridge tracker</h1>
+          <h4>Add items currently in your fridge to the list to make sure you don't throw them away</h4>
+        </div>
+
+        <div className="mb-2 justify-content-start">
+          <Button variant="dark edit" onClick={getItems}>
+            Refresh List
+          </Button>
+          <SortingComponent handleSelect={handleSelect}/>
+        </div>
+        <div className="product">
+          <ItemsList items={items} handleShow={handleShow} deleteHandler={deleteHandler} getItemId={getItemIdHandler} />
+          <div className="addItem">
+            <AddItemButton handleShow={handleShow} />
+          </div>
+        </div>
+        <ItemForm handleClose={handleClose} show={show} itemId={itemId} setItemId={setItemId} />
       </div>
-      <AddItemButton handleShow={handleShow} />
-      <div className="mb-2 justify-content-start">
-        <Button variant="dark edit" onClick={getItems}>
-          Refresh List
-        </Button>
-        <SortingComponent handleSelect={handleSelect}/>
-      </div>
-      <ItemsList items={items} handleShow={handleShow} deleteHandler={deleteHandler} getItemId={getItemIdHandler}/>
-      <ItemForm handleClose={handleClose} show={show} itemId={itemId} setItemId={setItemId}/>
-    </div>
+    </Container>
   );
 }
 
