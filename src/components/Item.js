@@ -26,7 +26,7 @@ const Item = (props) => {
           <strong>Expiry date:</strong> {formatted_expiry_date}
         </p>
         <p>
-          <strong>Status:</strong> {props.item.opened ? "Closed" : "Open"}{" "}
+          <strong>Status:</strong> {props.item.opened ? "Open" : "Closed"}{" "}
           {props.item.opened ? (
             <ClosedLockIcon accessibleTitle={`item-${props.item.id}-open`} />
           ) : (
