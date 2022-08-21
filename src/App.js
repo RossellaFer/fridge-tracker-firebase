@@ -8,7 +8,8 @@ import { Container } from "react-bootstrap";
 import ItemForm from "./components/ItemForm";
 import SortingComponent from "./components/SortingComponent";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
-import { db } from "./firebase-config";
+import { db, logout } from "./firebase-config";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -16,9 +17,16 @@ function App() {
   const [itemId, setItemId] = useState("");
   const [sortingValue, setSortingValue] = useState("expiry_date");
 
+  const navigate = useNavigate();
+
   const handleClose = () => {
     setItemId("");
     setShow(false);
+  };
+
+  const logoutAndRedirect = () => {
+    logout();
+    navigate("/");
   };
 
   const handleSelect = (e) => {
@@ -90,6 +98,9 @@ function App() {
           setItemId={setItemId}
         />
       </div>
+      <Button variant="primary" onClick={logoutAndRedirect}>
+        Logout
+      </Button>
     </Container>
   );
 }
