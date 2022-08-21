@@ -70,3 +70,13 @@ h1 {
 .statusIcon {
   margin-bottom: 7px;
 }
+
+.login-form {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.login-form button {
+  margin: 0 auto;
+}
