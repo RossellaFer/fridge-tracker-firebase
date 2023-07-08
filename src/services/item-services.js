@@ -36,5 +36,5 @@ class ItemDataService {
     return getDoc(itemDoc);
   };
 }
-
-export default new ItemDataService();
+const itemDataService = new ItemDataService();
+export default itemDataService;
